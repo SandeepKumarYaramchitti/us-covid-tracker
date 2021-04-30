@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect} from "react";
+import { Layout} from 'antd';
+import 'antd/dist/antd.css';
+import {Switch,Route} from "react-router-dom"
+import "./index.css";
+import {LeftMenu} from "./components/leftmenu";
+import {Home} from "./pages/home";
+import {Case} from "./pages/cases";
+import {Vaccine} from "./pages/vaccine";
 
+
+const {Header, Content} = Layout;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+<Layout>
+      {/* header */}
+      <Header className="header">COVID-19 in USA</Header>
+        <Layout >
+          {/* left menu section */}
+          <LeftMenu/>
+          {/* center */}
+            <Layout className="site-layout">
+              <Content
+                className="site-layout-background"
+                style={{
+                  margin: '24px 16px',
+                  padding: 24,
+                  minHeight: "700px",
+                }}
+              >
+                <Switch>
+                  <Route path="/" exact component={Home} />
+                  <Route path="/case" component={Case} />
+                  <Route path="/vaccine" component={Case} />
+                  
+                </Switch>   
+
+              </Content>
+          </Layout>
+        </Layout>
+  </Layout>
+    </>
   );
 }
 
